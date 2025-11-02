@@ -1,5 +1,5 @@
 {
-  "name": "Ubuntu",
+  "name": "Haskell & Node.js (TypeScript) Environment",
   "build": {
     "dockerfile": "Dockerfile",
     "args": {
@@ -9,10 +9,14 @@
   // "forwardPorts": [4000],
   // "postCreateCommand": "cabal build",
   // "settings": {
-  //     "terminal.integrated.defaultProfile.linux": "/bin/bash" // set your favorite shell
+  //     "terminal.integrated.defaultProfile.linux": "/bin/bash" // set your favorite shell
   // },
   "extensions": [
-    "haskell.haskell"
+    "haskell.haskell",
+    // --- Node.js / TypeScript 開発のための拡張機能を追加 ---
+    "ms-vscode.typescript-language-features", // TypeScript標準機能（通常はデフォルトだが明示）
+    "dbaeumer.vscode-eslint",
+    "esbenp.prettier-vscode"
   ],
   "remoteUser": "vscode"
 }
