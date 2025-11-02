@@ -17,22 +17,10 @@ ENV BOOTSTRAP_HASKELL_INSTALL_HLS=1
 RUN apt-get update && \
     apt-get -y install --no-install-recommends git sudo jq bc make automake rsync htop curl build-essential lsb-release pkg-config libffi-dev libgmp-dev software-properties-common libssl-dev libtinfo-dev libsystemd-dev zlib1g-dev make g++ wget libncursesw5 libtool autoconf && \
     apt-get clean
-
-# --- Node.js/TypeScript 環境の追加 ---
-# nodesource リポジトリを追加してLTSバージョンのNode.js (v20) をインストール
-RUN curl -fsSL https://deb.nodesource.com/setup_20.x | bash - && \
-    apt-get install -y nodejs && \
-    apt-get clean && \
-    rm -rf /var/lib/apt/lists/*
-
 # change user
 USER vscode
-# install ghcup (Haskell environment)
+# install ghcup
 RUN bash -c "curl --proto '=https' --tlsv1.2 -sSf https://get-ghcup.haskell.org | sh"
-
-# グローバルにTypeScriptとts-nodeをインストール (vscodeユーザーで実行)
-RUN npm install -g typescript ts-node
-
 # set PATH
 ENV PATH=${PATH}:/home/vscode/.local/bin
 ENV PATH=${PATH}:/home/vscode/.ghcup/bin
